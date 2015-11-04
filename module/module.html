@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>module尝试模块化</title>
+</head>
+<body>
+	<script>
+	var module1 = (function(){
+		var name = "Eden";
+		var sayName = function(){
+			alert(name);
+		}
+		var changeName = function(){
+			name="Not Eden";
+			alert(name);
+		}
+		return{
+			sayName:sayName,
+			changeName:changeName
+		}
+	}())
+
+	module1.sayName();
+	module1.changeName();
+	module1.sayName();
+	
+	</script>
+</body>
+</html>
