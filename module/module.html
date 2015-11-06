@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>module尝试模块化</title>
+	<title>尝试模块化</title>
 </head>
 <body>
 	<script>
+	//这种定义模块的方法不会暴露内部的一些不想暴露的东西，如这个例子就不会暴露内部的name属性
 	var module1 = (function(){
 		var name = "Eden";
 		var sayName = function(){
@@ -19,12 +20,40 @@
 			sayName:sayName,
 			changeName:changeName
 		}
-	}())
+	})();
 
-	module1.sayName();
-	module1.changeName();
-	module1.sayName();
-	
+	// module1.sayName();
+	// module1.changeName();
+	// module1.sayName();
+
+	//有时候一个模块很大，需要分成几个部分，可以进行模块的嵌套
+	// var parent_module = (function(parent){
+	// 	//内部的第一个子模块
+	// 	this.son = (function(){
+	// 		this.name = "first son";
+	// 		this.sayName = function(){
+	// 			alert("I am the first son");
+	// 		}
+	// 		return {
+	// 			sayName:sayName
+	// 		}
+	// 	}());
+	// 	//内部的第二个子模块
+	// 	this.daughter = (function(){
+	// 		this.name = "first daughter";
+	// 		this.sayName = function(){
+	// 			alert("I am the first daughter");
+	// 		}
+	// 		return{
+	// 			sayName:sayName
+	// 		}
+	// 	})();
+	// 	return this;
+	// })(parent_module);
+	// console.log(parent_module);
+	// parent_module.son.sayName();
+	// parent_module.daughter.sayName();
+
 	</script>
 </body>
 </html>

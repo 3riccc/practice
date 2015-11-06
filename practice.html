@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kinds of practice</title>
+</head>
+<body>
+<script>
+/**
+ * 一个无限调用自身的函数
+ */
+	var glo = 1;
+	function add_glo (glo) {
+		glo+=1;
+		console.log(glo);
+		add_glo(glo);
+	}
+// 	add_glo(glo);
+
+/**
+ * 返回一个函数，函数接受一个参数
+ * @param {[int]} parent 加法的第一个参数
+ */
+function add(parent) {
+	var add_add = function(son){
+		console.log(parent+son);
+	}
+	return add_add;
+}
+add(3)(4);
+</script>
+</body>
+</html>
