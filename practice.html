@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Kinds of practice</title>
+	<link rel="stylesheet" href="practice.css">
 </head>
 <body>
 <script>
@@ -26,7 +27,45 @@ function add(parent) {
 	}
 	return add_add;
 }
-add(3)(4);
+//add(3)(4);
+
+/**
+ * 绘图
+ */
+(function(){
+	var drawing = document.getElementById("drawing");
+	console.log(drawing);
+	// if(drawing.getContext){
+	// 	var context = drawing.getContext("2d");
+	// 	alert("ready");
+	// }
+
+}())
 </script>
+<div id="drawing"></div>
+<!-- <canvas id="drawing" width="100" height="100px">a drawing of somthing</canvas> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
