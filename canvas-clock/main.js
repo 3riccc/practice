@@ -1,13 +1,22 @@
 window.onload=function() {
-	var drawing = document.getElementById("clock");
-	// 检测是否支持getContext()
-	if(drawing.getContext){
-		// 获取2d上下文
-		var context = drawing.getContext("2d");
+
+	/**
+	 * 根据时间来画表针
+	 * @param  {[number]} radius [description]
+	 * @param  {[number]} sec    [description]
+	 * @param  {[number]} min    [description]
+	 * @param  {[number]} hour   [description]
+	 * @return {[type]}        [description]
+	 */
+	function drawTime (radius,sec,min,hour) {
 		
+		var coordinate = getCoor(radius,sec,min,hour);
+		// 获取2d上下文
+		var drawing = document.getElementById("clock");
+		var context = drawing.getContext("2d");
+		context.clearRect(0,0,200,200);
 		// 开始画图
 		context.beginPath();
-		
 		// 画时钟的外圈
 		context.arc(100,100,99,0,2*Math.PI,true);
 		
@@ -16,48 +25,27 @@ window.onload=function() {
 		
 		// 画时钟的内圈
 		context.arc(100,100,94,0,2*Math.PI,false);
-		
 		// 变换原点
 		context.translate(100,100);
 
 		//画时针
 		context.moveTo(0,0);
-		context.lineTo(0,-85);
+		context.lineTo(0.6*coordinate[2][0],-0.6*coordinate[2][1]);
 
 		//画分针
 		context.moveTo(0,0);
-		context.lineTo(65,0);
+		context.lineTo(0.75*coordinate[1][0],-0.75*coordinate[1][1]);
+
+		//画秒针
+		context.moveTo(0,0);
+		context.lineTo(0.85*coordinate[0][0],-0.85*coordinate[0][1]);
 
 		// 描边路经
 		context.stroke();
-
-		// 绘制文本
-		context.font="bold 14px Arial";
-		context.textAlign="center";
-		context.textBaseline="middle";
-		context.fillText("12",0,-82);
-	}
-	// 根据时间来画表针
-	function drawTime (radius,sec,min,hour) {
-		var coordinate = getCoor(radius,sec,min,hour);
-		// 获取2d上下文
-		var context = drawing.getContext("2d");
-		// 开始画图
-		context.beginPath();
-
-		// 变换原点
-		context.translate(100,100);
-
-		//画时针
+		// 原点变回来
+		context.translate(-100,-100);
 		context.moveTo(0,0);
-		context.lineTo(coordinate[2][0],coordinate[2][1]);
 
-		//画分针
-		context.moveTo(0,0);
-		context.lineTo(coordinate[1][0],coordinate[1][1]);
-
-		// 描边路经
-		context.stroke();
 
 	}
 	
@@ -70,7 +58,9 @@ window.onload=function() {
 	 * @param  {[number]} hour 时
 	 * @return {[array]}     2维数组表示秒针分针时针的坐标
 	 */
+	
 	function getCoor (radius,sec,min,hour) {
+		
 		// 解决顺时针的问题
 		sec = -sec;
 		min = -min;
@@ -91,28 +81,41 @@ window.onload=function() {
 		coordinate[2][0] = (Math.cos((hour/12)*2*Math.PI)*radius).toFixed(2);
 		coordinate[2][1] = (Math.sin((hour/12)*2*Math.PI)*radius).toFixed(2);
 		
-		console.log(coordinate[2][0],coordinate[2][1]);
-		console.log(coordinate);
 
 		
-		setTimeout(function(){
-			console.log(coordinate)
-		},2000)
+		// 转换方向,由于数组也是对象，因此不能直接var tmp = coornadite，而应该新建另一个数组
+		var tmp = [[0,0],[0,0],[0,0]]
 		
-		// 转换方向
-		var tmp = coordinate;
 		for(var i=0;i<3;i++){
+			tmp[i][0] = parseInt(coordinate[i][0]);
+			tmp[i][1] = parseInt(coordinate[i][1]);
+
 			coordinate[i][0] = -tmp[i][1];
 			coordinate[i][1] = tmp[i][0];
 		}
-		
 		return coordinate;
 	}
-	drawTime(100,0,0,20.5);
-	(function(){
-		var b = [[0,0],[0,0]];
-		b[1][0] = 2.3;
-		b[1][1] = 3.6;
-		console.log(b);
-	}())
+
+	/**
+	 * 获取当前时间
+	 * @return {[array]} 含有秒，分，时的数组
+	 */
+	function getTime () {
+		var date = new Date();
+		var now = [0,0,0];
+		now[2] = date.getHours();
+		now[1] = date.getMinutes();
+		now[0] = date.getSeconds();
+		return now;
+	}
+	
+
+	/**
+	 * 每一秒调用一次，重画表盘
+	 */
+	setInterval(function(){
+		var now = getTime();
+		drawTime(100,now[0],now[1],now[2]);
+	},1000);
+	
 }
