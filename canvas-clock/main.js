@@ -98,7 +98,7 @@ window.onload=function() {
 
 	/**
 	 * 获取当前时间
-	 * @return {[array]} 含有秒，分，时的数组
+	 * @return {[array]} 含有秒，分，时的数组  
 	 */
 	function getTime () {
 		var date = new Date();
