@@ -7,7 +7,12 @@
 	bottom:$bottom-length;
 }
 
-
+@mixin mix-rotate($angle:90deg) {
+	transform:rotate($angle);
+	-webkit-transform:rotate($angle);
+	-moz-transform:rotate($angle);
+	-o-transform:rotate($angle);
+}
 // a simple header
 .header{
 	height: 20px;
