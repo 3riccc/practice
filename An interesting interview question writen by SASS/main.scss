@@ -1,0 +1,44 @@
+// define two mixin to change the top and bottom location
+
+@mixin top-leng($top-length:70px) {
+	top:$top-length;
+}
+@mixin bottom-leng($bottom-length:70px) {
+	bottom:$bottom-length;
+}
+
+
+// a simple header
+.header{
+	height: 20px;
+}
+
+
+// main demo
+.demo{
+	// let demo to be the root of position
+	position: absolute;
+	top: 50%;
+	// set width of every li fixed,and float left
+	li{
+		float: left;
+		width: 120px;
+		margin-left: 20px;
+		margin-right: 20px;
+		position: relative;
+	}
+	// let every img being center
+	.img-center{
+
+	}
+	.text-top,.text-bottom{
+		position: absolute;
+	}
+	.text-top{
+		@include bottom-leng();
+	}
+	.text-bottom{
+		@include top-leng();
+	}
+	
+}
