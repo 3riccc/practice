@@ -2,19 +2,35 @@ window.onload=function() {
 
 	/**
 	 * 根据时间来画表针
-	 * @param  {[number]} radius [description]
-	 * @param  {[number]} sec    [description]
-	 * @param  {[number]} min    [description]
-	 * @param  {[number]} hour   [description]
+	 * @param  {[number]} radius 半径
+	 * @param  {[number]} sec    
+	 * @param  {[number]} min    
+	 * @param  {[number]} hour   
+	 * @param  {[number]} year   
+	 * @param  {[number]} month   
+	 * @param  {[number]} date
 	 * @return {[type]}        [description]
 	 */
-	function drawTime (radius,sec,min,hour) {
+	function drawTime (radius,sec,min,hour,year,month,date) {
+		// 获取随机颜色
+		var clockColorArr = randomColor();
+		var clockColorStr = 'rgb('+clockColorArr[0]+','+clockColorArr[1]+','+clockColorArr[2]+')';
+		var textColorArr = randomColor();
+		var textColorStr = 'rgb('+textColorArr[0]+','+textColorArr[1]+','+textColorArr[2]+')';
 		
+		// 获取当前时间对应的坐标
 		var coordinate = getCoor(radius,sec,min,hour);
+		
 		// 获取2d上下文
 		var drawing = document.getElementById("clock");
 		var context = drawing.getContext("2d");
+		// 设置随机颜色
+		context.strokeStyle = clockColorStr;
+		context.fillStyle = textColorStr;
+		
+		// 清空整个canvas
 		context.clearRect(0,0,200,200);
+		
 		// 开始画图
 		context.beginPath();
 		// 画时钟的外圈
@@ -40,6 +56,16 @@ window.onload=function() {
 		context.moveTo(0,0);
 		context.lineTo(0.85*coordinate[0][0],-0.85*coordinate[0][1]);
 
+		// 设置写字的格式
+		context.font="bold 14px Arial";
+		context.textAlign="center";
+		context.textBaseline="middle";
+		// 生成年月日的字符串
+		var dateStr = ''+year+'-'+month+'-'+date;
+		// 获取字符串的位置
+		var datePos = randomPosition();
+		// 写下字符串
+		context.fillText(dateStr,datePos[0],datePos[1]);
 		// 描边路经
 		context.stroke();
 		// 原点变回来
@@ -98,24 +124,51 @@ window.onload=function() {
 
 	/**
 	 * 获取当前时间
-	 * @return {[array]} 含有秒，分，时的数组
+	 * @return {[array]} 含有秒，分，时，年，月，日的数组<----注意这个顺序
 	 */
 	function getTime () {
 		var date = new Date();
-		var now = [0,0,0];
+		var now = [0,0,0,0,0,0];
 		now[2] = date.getHours();
 		now[1] = date.getMinutes();
 		now[0] = date.getSeconds();
+		now[3] = date.getFullYear();
+		now[4] = date.getMonth();
+		now[5] = date.getDate();
 		return now;
 	}
-	
+
 
 	/**
-	 * 每一秒调用一次，重画表盘
+	 * 获取随机颜色值
+	 * @return {[array]} rgb的三个值组成的数组
+	 */
+	function randomColor () {
+		var colorArr = [0,0,0];
+		for(var i=0;i<3;i++){
+			colorArr[i] = Math.floor(Math.random()*255);
+		}
+		return colorArr;
+	}
+	
+	/**
+	 * 获取随机位置，即横纵坐标都是－50至50
+	 * @return {[array]} 包含横纵坐标的数组
+	 */
+	function randomPosition () {
+		var ranPos = [];
+		for(var i=0;i<2;i++){
+			ranPos[i] = Math.floor(Math.random()*100)-50;
+		}
+		return ranPos;
+	}
+
+	/**
+	 * 每50毫秒调用一次，重画表盘
 	 */
 	setInterval(function(){
 		var now = getTime();
-		drawTime(100,now[0],now[1],now[2]);
-	},1000);
+		drawTime(100,now[0],now[1],now[2],now[3],now[4],now[5]);
+	},50);
 	
 }
