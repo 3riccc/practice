@@ -3,7 +3,7 @@
  * @param {[number]} arg 下次要加的数
  */
 function add (arg) {
-	add.last = arg;
+	this.last = arg;
 	add.func = function(arg){
 		console.log(add.last+arg);
 		add.last += arg;
@@ -14,3 +14,9 @@ function add (arg) {
 
 // 这样调用
 add(2)(1)(4)(3);
+
+
+if(!a){
+	alert('a is not defined');
+	var a = {};
+}
