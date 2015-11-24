@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" Content="text/html; charset=utf-8;" />
+
+        <title>移动端触摸滑动</title>
+        <meta name="author" content="rainna" />
+        <meta name="keywords" content="rainna's js lib" />
+        <meta name="description" content="移动端触摸滑动" />
+        <!-- <meta name="viewport" content="target-densitydpi=320,width=640,user-scalable=no" /> -->
+
+        <style>
+        *{margin:0;padding:0;}
+        li{list-style:none;}
+
+        .m-slider{width:600px;margin:50px 20px;overflow:hidden;}
+        .m-slider .cnt{position:relative;left:0;width:3000px;}
+        .m-slider .cnt li{float:left;width:600px;}
+        .m-slider .cnt img{display:block;width:100%;height:450px;}
+        .m-slider .cnt p{margin:20px 0;}
+        .m-slider .icons{text-align:center;color:#000;}
+        .m-slider .icons span{margin:0 5px;}
+        .m-slider .icons .curr{color:red;}
+        .f-anim{-webkit-transition:left .2s linear;}
+        </style>
+    </head>
+
+    <body>
+    <input type="text" valur="ABC()">
+        <div class="m-slider">
+            <ul class="cnt" id="slider">
+                <li>
+                    <img src="http://levi.yii.so/wp-content/uploads/2014/08/o_3068640196117481166.jpg" alt="" />
+                    <p>20140813镜面的世界，终究只是倒影。看得到你的身影，却触摸不到你的未来</p>
+                </li>
+                <li>
+                    <img src="http://levi.yii.so/wp-content/uploads/2014/08/o_4798022453110310215.jpg" alt="" />
+                    <p>20140812锡林浩特前往东乌旗S101必经之处，一条极美的铁路。铁路下面是个小型的盐沼，淡淡的有了一丝天空之境的感觉。可惜在此玩了一个小时也没有看见一列火车经过，只好继续赶往东乌旗。</p>
+                </li>
+                <li>
+                    <img src="http://levi.yii.so/wp-content/uploads/2014/08/o_6608946691259322175.jpg" alt="" />
+                    <p>20140811水的颜色为什么那么蓝，我也纳闷，反正自然饱和度和对比度拉完就是这个颜色的</p>
+                </li>
+                <li>
+                    <img src="http://levi.yii.so/wp-content/uploads/2014/08/o_6619295294699949331.jpg" alt="" />
+                    <p>海洋星球3重庆天气热得我想卧轨自杀</p>
+                </li>
+                <li>
+                    <img src="http://levi.yii.so/wp-content/uploads/2014/08/o_3068640196117481166.jpg" alt="" />
+                    <p>以上这些作品分别来自两位设计师作为观者，您能否通过设计风格进行区分</p>
+                </li>
+            </ul>
+
+            <div class="icons" id="icons">
+                <span class="curr">1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+            </div>
+        </div>
+
+        <script src="main.js">
+        </script>
+    </body>
+</html>
