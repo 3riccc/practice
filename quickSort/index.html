@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>quickSort</title>
+</head>
+<body>
+<script>
+	function quickSort(arr){
+		if(arr.length <= 1){
+			return arr;
+		}
+		//  找到基准点
+		var num = Math.floor(arr.length/2);
+		// 截取出基准点对应的数
+		var numValue = arr[num];
+		console.log(numValue);
+
+		// 建立两个数组
+		var left = [];
+		var right = [];
+
+		// 小于就存到左边数组，大于就存到右边数组
+		for(var i = 0;i<arr.length;i++){
+			if(arr[i]<numValue){
+				left.push(arr[i]);
+			}else{
+				right.push(arr[i]);
+			}
+		}
+		// 递归
+		return quickSort(left).concat([numValue],quickSort(right));
+	}
+	alert(quickSort([4,2,7,5,8,23,7,1,0,6]));
+</script>
+</body>
+</html>

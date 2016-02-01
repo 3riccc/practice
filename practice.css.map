@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,OAAO,CACN,KAAK,CAAE,KAAK,CACZ,MAAM,CAAE,KAAK,CACb,gBAAgB,CAAE,GAAG,CACrB,QAAQ,CAAE,MAAM,CAChB,YAAI,CACH,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,gBAAgB,CAAE,KAAK,CACvB,UAAU,CAAE,IAAI",
+"sources": ["practice.scss"],
 "names": [],
 "file": "practice.css"
 }

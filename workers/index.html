@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>workers</title>
+</head>
+<body>
+<script>
+	// 建立worker
+	var worker = new Worker("myWorkers.js");
+	// 向worker传递数据
+	worker.postMessage("Hi man");
+	// 取回worker的数据
+	worker.onmessage = function(event){
+		console.log(event.data);
+	}
+</script>
+</body>
+</html>

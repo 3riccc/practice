@@ -13,10 +13,8 @@ function add (arg) {
 }
 
 // 这样调用
-add(2)(1)(4)(3);
+// add(2)(1)(4)(3);
 
-
-if(!a){
-	alert('a is not defined');
-	var a = {};
+window.onunload = function(){
+	alert("f");
 }
