@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo 0</title>
+	<style>
+	.x{width: 62px;height: 62px;position: relative;background-color: #000;transition: transform 0.5s;cursor: pointer;}
+	.x:before{content:"";display: block;width: 1px;height: 64px;background-color: #fff;position: absolute;left: 31px;top: -1px;transform: rotate(45deg);}
+	.x:after{content:"";display: block;width: 1px;height: 64px;background-color: #fff;position: absolute;left: 31px;top: -1px;transform: rotate(-45deg);}
+	.x:hover{transform: rotate(360deg);}
+	</style>
+</head>
+<body>
+	<div class="x"></div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="a">aaa</div>
+
+
+
+	<div class="b">bbb</div>
+	<div class="c">ccc</div>
+	<script>
+		"use strict";
+
+var a = document.querySelector(".a");
+// a.addEventListener("click",function(e){
+// 	console.log(e);
+// 	console.log(a);
+// })
+
+var b = document.querySelector(".b");
+var c = document.querySelector(".c");
+var eles = [a, b, c];
+
+var _loop = function _loop(i) {
+	eles[i].addEventListener("click", function (e) {
+		console.log(i);
+
+		console.log(e);
+	});
+};
+
+for (var i = 0; i < 3; i++) {
+	_loop(i);
+}
+	</script>
+</body>
+</html>

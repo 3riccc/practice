@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>outerhtml components</title>
+	<style>
+		.abc{display: block;}
+	</style>
+</head>
+<body>
+	<div class="a">
+		<abc class="b"></abc>
+	</div>
+	<script type="text/javascript">
+		window.onload = function(){
+			document.createElement("abc");
+			var a = document.querySelector(".a");
+			var b = document.querySelector(".b");
+
+			console.log(b.outerHTML);
+			b.outerHTML = '<p>this is b</p>'+
+			'<div>that is another</div>';
+		}
+	</script>
+</body>
+</html>

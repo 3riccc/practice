@@ -13,6 +13,8 @@
 	// 取回worker的数据
 	worker.onmessage = function(event){
 		console.log(event.data);
+		// 中介worker生命周期
+		worker.teminate();
 	}
 </script>
 </body>

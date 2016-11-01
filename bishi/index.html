@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	function read_line(){
+		return "helloworld!2@@"
+	}
+	function print(a){
+		console.log(a)
+	}
+		// var str =read_line();
+		// str = str.toString()
+		// var temp = [];
+		// var n=0;
+		// var nGo = true;
+		// for(var i=0;i<str.length;i++){
+		// 	for(var j=0;j<i;j++){
+		// 		if(str[j] == str[i]){
+		// 			nGo = false;
+		// 			temp[i] = temp[j];
+		// 		}
+		// 	}
+		// 	if(nGo){
+		// 		n++;
+		// 		temp[i] = n;
+		// 	}
+		// 	nGo = true;
+		// }
+		// var str1 = '';
+		// for(var i=0;i<temp.length;i++){
+		// 	str1 += String.fromCharCode(temp[i]+96);
+		// }
+		// print(str1)
+		// 
+		// 
+		// 
+		
+
+		function together(str0,str1){
+			for(var i=0;i<str0.length;i++){
+				if(str0[i] == str1[0]){
+					var n=i;
+					var pipei = true;
+					for(j=1;j<str1.length;j++){
+						if(str1[j] == str0[n]){
+							n++;
+						}else{
+							pipei = false;
+							break;
+						}
+						// if((n == str0.length-1 || j == str1.length-1)&&pipei == true){
+						if(n == str0.length-1 &&pipei){
+							var strNew = str0 + str1.substring(j,str1.length);
+						}
+						if(j == str1.length-1&&pipei){
+							var strNew = str0;
+						}
+					}
+				}
+			}
+			return strNew;
+		}
+		print(together('abc','bc'))
+	</script>
+</body>
+</html>
